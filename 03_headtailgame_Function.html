@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head_tail_Game</title>
+    <style>
+        button{
+            height: 30px;
+            width: 100px;
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="
+        gamer('head');
+ 
+        ">
+        Head
+    </button>
+    <button onclick="
+        gamer('tail');     
+        "
+    >
+        Tail
+    </button>
+    <button onclick="
+        score.Win = 0;
+        score.Tie = 0;
+    ">
+        Reset Score
+    </button>
+    <script>
+        const score = {
+            Win : 0,
+            Tie : 0,
+        };
+        function gamer(playerMove){
+            const result = computerMove(); 
+            
+            let guess = '';
+            if (playerMove === 'head'){
+                if(result === 'head'){
+                    guess = 'Tie!';
+                }
+                else if (result === 'tail') {
+                    guess = 'You Win!';
+                }
+            }
+            else if(playerMove === 'tail'){
+                if (result === 'tail'){
+                    guess = 'Tie!';
+                }
+                else if (result === 'head') {
+                    guess = 'You Win!';
+                }
+            }
+              
+            if (guess === 'You Win!'){
+                score.Win +=1;
+            }
+            else if (guess === 'Tie!'){
+                score.Tie +=1;
+            }
+            
+           
+
+            alert(`Your move is ${playerMove} and Computer move is ${result}. ${guess}
+Wins : ${score.Win} Ties : ${score.Tie}`);
+        }
+
+        function computerMove(){
+            const player = Math.random();
+            let result = '';
+            if(player >= 0 && player < 1/2){
+                result = 'head';
+            }
+            else if (player < 1 && player >= 1/2){
+                result = 'tail';
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>
